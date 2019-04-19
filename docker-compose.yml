@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD
+    expose:
+      - '3306'
+    volumes:
+      - type: volume
+        source: mysql
+        target: /var/lib/mysql
+    networks:
+      - mysql
+volumes:
+  mysql:
+    name: mysql
+networks:
+  mysql:
+    name: mysql 
+    driver: bridge
