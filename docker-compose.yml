@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 services:
   mysql:
     image: mysql:8.0
@@ -9,11 +9,15 @@ services:
     expose:
       - '3306'
     volumes:
-      - mysql:/var/lib/mysql
+      - type: volume
+        source: mysql
+        target: /var/lib/mysql
     networks:
       - mysql
 volumes:
   mysql:
+    name: mysql
 networks:
   mysql:
+    name: mysql 
     driver: bridge
