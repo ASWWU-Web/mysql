@@ -32,6 +32,20 @@ docker-compose exec mysql mysql -p
 
 You will then be prompted for the root password. You can login as a different database user if you specify the ``-u`` option follwed by a username.
 
+Yo should also adjust the ``[mysqld]`` section in the ``my.cnf`` file in ``/etc/mysql/`` (add it if the section does not exist) to have only the following parameters:
+
+```
+[mysqld]
+default-storage-engine=INNODB
+character_set_server=utf8mb4
+innodb_default_row_format=DYNAMIC
+innodb_large_prefix=ON
+innodb_file_format=Barracuda
+innodb_log_file_size=2G
+```
+
+This configuration step is required for the Jira server instance to work properly.
+
 ### Add database
 After connecting to the MySQL shell, you can create new databases with the following command:
 
