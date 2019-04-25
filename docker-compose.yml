@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   mysql:
-    image: mysql:8.0
+    image: mysql:5.7
     container_name: mysql
     restart: always
     environment:
@@ -10,13 +10,19 @@ services:
       - '3306'
     volumes:
       - type: volume
-        source: mysql
+        source: mysql_var
         target: /var/lib/mysql
+      - type: volume
+        source: mysql_etc
+        target: /etc/mysql
     networks:
       - mysql
 volumes:
-  mysql:
-    name: mysql
+  mysql_var:
+    name: mysql_var
+  mysql_etc:
+    name: mysql_etc
+
 networks:
   mysql:
     name: mysql 
